@@ -715,6 +715,8 @@ Each prompt in the `prompts` array must include:
 - **arguments** (optional): Array of argument names that can be used in the prompt text
 - 🌎 **text**: The actual prompt text that uses template variables like `${arguments.topic}` or `${arguments.aspect}` as placeholders for MCP Client-supplied arguments. If your argument is named `language`, you'd add `${arguments.language}` where you expect it to show up in the prompt.
 
+> **Runtime validation:** Treat `prompts[].text` as the canonical declared prompt content, not as a short listing summary. Claude Desktop currently validates prompt content returned by `prompts/get` against the manifest declaration and rejects a mismatch. To avoid drift, generate both the manifest entry and the served prompt from the same canonical source. The comparison/normalization rules are client behavior and are not specified here, so do not rely on undocumented normalization.
+
 Example:
 
 ```json
